@@ -1,16 +1,17 @@
-/* Background wrapper */
-.login-bg {
+.auth-bg {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  background-image: url('./assets/uccbg.png'); /* static path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+
 /* Overlay */
-.login-bg .overlay {
+.auth-bg .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -32,28 +33,30 @@
   z-index: 2;
 }
 
-/* Card styling */
-.card {
+/* Wrapper for forms inside auth pages */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* true vertical centering */
+  position: relative;
+  z-index: 1;
+  padding: 80px 20px 40px; /* leave space around */
+}
+
+/* Card styling (login/signup forms) */
+.card,
+.auth-form-card {
   z-index: 1;
   width: 400px;
   max-width: 100%;
   margin: auto;
+  margin-top: 60px; /* prevents overlap with header */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
   background: #ffffff;
   padding: 2rem;
   position: relative;
-}
-
-/* Login wrapper */
-.app-login-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
-  z-index: 1;
-  padding: 100px 20px 40px;
 }
 
 /* Primary buttons - all states */
@@ -93,17 +96,17 @@ a:hover {
   color: #f39c12;
 }
 
-/* Checkbox & radio checked state */
+/* Checkbox & radio checked state - ORANGE */
 .form-check-input:checked {
-  background-color: #388e3c;
-  border-color: #388e3c;
+  background-color: #e67e22 !important;
+  border-color: #e67e22 !important;
 }
 
-/* Input focus */
+/* Input focus - ORANGE */
 .form-control:focus,
 .form-select:focus {
-  border-color: #388e3c;
-  box-shadow: 0 0 0 0.25rem rgba(56, 142, 60, 0.25);
+  border-color: #e67e22 !important;
+  box-shadow: 0 0 0 0.25rem rgba(230, 126, 34, 0.25) !important;
 }
 
 /* Button shadows */
@@ -129,6 +132,7 @@ a:hover {
   background-color: #ffffff;
   border-color: #d6d6d6;
 }
+
 /* Remove focus outline and shadow for Google login button */
 .btn-google:focus,
 .btn-google:active {
@@ -136,13 +140,13 @@ a:hover {
   box-shadow: none !important;
 }
 
-
-/* Eye icon hover */
+  /* Eye icon styling */
 .bi-eye,
 .bi-eye-slash {
   position: absolute;
   right: 10px;
-  top: 38px;
+  top: 50%;
+  transform: translateY(-50%); /* keeps it perfectly centered */
   cursor: pointer;
   color: #6e6e6e;
   font-size: 1.2rem;
@@ -151,7 +155,7 @@ a:hover {
 
 .bi-eye:hover,
 .bi-eye-slash:hover {
-  color: #388e3c;
+  color: #e67e22;
 }
 
 /* Remember me + Forgot password */
@@ -172,7 +176,7 @@ a:hover {
 }
 
 .remember-forgot a:hover {
-  color: #388e3c;
+  color: #e67e22;
 }
 
 /* Selected text highlight */
@@ -185,25 +189,3 @@ a:hover {
   background-color: #e67e22;
   color: #ffffff;
 }
-
-
-
-/* Fade & slide up animation for the card */
-@keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Apply animation to the card */
-.card {
-  animation: fadeSlideUp 0.8s ease-out forwards;
-  animation-delay: 0.3s; /* optional slight delay */
-}
-
-

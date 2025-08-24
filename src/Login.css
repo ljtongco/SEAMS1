@@ -1,157 +1,93 @@
-/* Background wrapper */
-.login-bg {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Overlay */
-.login-bg .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 0;
-}
-
-/* Header wrapper */
-.header-wrapper {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
+/* Full scoped login page styles */
+.login-page {
   display: flex;
   justify-content: center;
-  z-index: 2;
+  align-items: flex-start; /* start from top */
+  padding-top: calc(60px + 20px); /* card below header + 20px gap */
 }
 
 /* Card styling */
-.card {
-  z-index: 1;
-  width: 400px;
-  max-width: 100%;
-  margin: auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+.login-card {
+  width: 400px; /* original width */
+  max-width: 95%;
   border-radius: 12px;
-  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   padding: 2rem;
+  background: #ffffff;
   position: relative;
 }
 
-/* Login wrapper */
-.app-login-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
-  z-index: 1;
-  padding: 100px 20px 40px;
+/* Input fields */
+.login-input {
+  height: 42px;
+  font-size: 0.95rem;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* space for eye icon */
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
 }
 
-/* Primary buttons - all states */
-.btn-primary,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary:visited {
-  background-color: #388e3c !important;
-  border-color: #388e3c !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+.login-input:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.2rem rgba(230,126,34,0.25);
 }
 
-.btn-primary:hover {
-  background-color: #4caf50 !important;
-  border-color: #4caf50 !important;
+/* Password wrapper relative */
+.position-relative {
+  position: relative !important;
 }
 
-/* Secondary text */
-.text-secondary {
-  color: #6e6e6e;
-}
-
-/* Body text */
-body {
-  color: #000;
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Links */
-a {
-  color: #e67e22;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #f39c12;
-}
-
-/* Checkbox & radio checked state */
-.form-check-input:checked {
-  background-color: #388e3c;
-  border-color: #388e3c;
-}
-
-/* Input focus */
-.form-control:focus,
-.form-select:focus {
-  border-color: #388e3c;
-  box-shadow: 0 0 0 0.25rem rgba(56, 142, 60, 0.25);
-}
-
-/* Button shadows */
-.btn {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.btn:active {
-  transform: scale(0.98);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-}
-
-/* Google login button */
-.btn-google {
-  background-color: #f5f5f5;
-  border: 1px solid #e0e0e0;
-  color: #000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: background 0.2s ease;
-}
-
-.btn-google:hover {
-  background-color: #ffffff;
-  border-color: #d6d6d6;
-}
-/* Remove focus outline and shadow for Google login button */
-.btn-google:focus,
-.btn-google:active {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-
-/* Eye icon hover */
-.bi-eye,
-.bi-eye-slash {
-  position: absolute;
-  right: 10px;
-  top: 38px;
+/* Eye icon inside password */
+.login-password-toggle {
+  position: absolute !important;
+  right: 15px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
   cursor: pointer;
-  color: #6e6e6e;
   font-size: 1.2rem;
+  color: #6e6e6e;
   transition: color 0.2s ease;
+  z-index: 10;
 }
 
-.bi-eye:hover,
-.bi-eye-slash:hover {
-  color: #388e3c;
+.login-password-toggle:hover {
+  color: #e67e22;
+}
+
+/* Buttons */
+.login-btn {
+  height: 45px;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.login-google-btn {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  height: 45px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.login-google-btn:hover {
+  background-color: #f8f9fa;
+  border-color: #bbb;
+}
+
+/* Links inside login wrapper - normal weight, orange */
+.login-card .signup-link,
+.login-card .forgot-link {
+  text-decoration: none;
+  font-weight: 400; /* normal weight */
+  color: #e67e22 !important; /* enforce orange color */
+}
+
+.login-card .signup-link:hover,
+.login-card .forgot-link:hover {
+  text-decoration: underline;
+  color: #f39c12 !important; /* hover color */
 }
 
 /* Remember me + Forgot password */
@@ -168,42 +104,5 @@ a:hover {
 
 .remember-forgot a {
   font-size: 0.9rem;
-  color: #6e6e6e;
+  text-align: right;
 }
-
-.remember-forgot a:hover {
-  color: #388e3c;
-}
-
-/* Selected text highlight */
-::selection {
-  background-color: #e67e22;
-  color: #ffffff;
-}
-
-::-moz-selection {
-  background-color: #e67e22;
-  color: #ffffff;
-}
-
-
-
-/* Fade & slide up animation for the card */
-@keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Apply animation to the card */
-.card {
-  animation: fadeSlideUp 0.8s ease-out forwards;
-  animation-delay: 0.3s; /* optional slight delay */
-}
-
-

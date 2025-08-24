@@ -1,28 +1,34 @@
 /* Floating header (no background strip, sits on top of background image) */
 .seams-header {
-  position: absolute; /* float on top of background */
-  top: -10px;          /* small offset from very top */
+  position: absolute; 
+  top: -10px;         
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   background: transparent;
-  padding: 0 0 30px 0; /* 👈 added bottom padding */
+  padding: 0 0 30px 0; 
   margin: 0;
-  z-index: 10; /* ensures it stays above the login card */
+  z-index: 10;
+  width: 100%;          /* 🔥 allow flex centering */
+  display: flex;        /* use flex on header */
+  flex-direction: column;
+  align-items: center;  /* center contents horizontally */
 }
 
 /* Logo + Title side by side */
 .seams-top {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 12px;
+  justify-content: center;  
+    padding-right: 20px; /* Add padding to the right */
+
 }
 
 /* UCC Logo */
 .seams-logo {
-  height: 65px;
+  height: 90px;  
   width: auto;
+  flex-shrink: 0;
 }
 
 /* SEAMS title */
@@ -32,16 +38,17 @@
   color: white;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
   margin: 0;
+  line-height: 1;
 }
 
-/* Subtitle under SEAMS */
 .seams-subtitle {
   font-size: 1.3rem;
   color: white;
   font-weight: 500;
-  margin: 5px 0 0 0;
+  margin: -8px 0 0 0;  /* 🔥 smaller top margin */
   line-height: 1.4;
 }
+
 
 /* Orange acronym letters */
 .seams-subtitle .orange {
