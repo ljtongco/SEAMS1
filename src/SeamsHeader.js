@@ -1,6 +1,6 @@
 import React from "react";
 import "./SeamsHeader.css";
-import ucclogo from "./assets/seamslogo.png";
+import ucclogo from "./assets/seamsucc.png";
 
 function SeamsHeader() {
   return (
@@ -10,8 +10,9 @@ function SeamsHeader() {
         <h1 className="seams-title">S.E.A.M.S</h1>
       </div>
       <p className="seams-subtitle">
-        <span className="orange">S</span>tudent{" "}
+        <span className="orange">S</span>chool{" "}
         <span className="orange">E</span>vent{" "}
+         <span className="">and</span> {" "}
         <span className="orange">A</span>ctivity{" "}
         <span className="orange">M</span>anagement{" "}
         <span className="orange">S</span>ystem
