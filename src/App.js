@@ -10,6 +10,9 @@ import Signup from "./Signup";
 import SignupStudent from "./SignupStudent";
 import StudentDashboard from "./StudentDashboard"; // ✅ import dashboard
 import StudentCalendar from "./StudentCalendar";
+import About from "./AboutUs"; // ✅ import AboutUs
+import Contact from "./ContactUs"; // ✅ import ContactUs
+import Footer from "./Footer";
 // Home component
 function Home() {
   return (
@@ -47,8 +50,12 @@ function App() {
         <Route path="/signup-student" element={<SignupStudent />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/student-calendar" element={<StudentCalendar />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
+  
+  <Footer />;
 }
 export default App;
