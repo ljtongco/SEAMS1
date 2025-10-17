@@ -13,6 +13,10 @@ import StudentCalendar from "./StudentCalendar";
 import About from "./AboutUs"; // ✅ import AboutUs
 import Contact from "./ContactUs"; // ✅ import ContactUs
 import Footer from "./Footer";
+import VerifyEmail from "./VerifyEmail";
+import SignupSuccess from "./SignupSuccess";
+import CompleteSignup from "./CompleteSignup";
+
 // Home component
 function Home() {
   return (
@@ -52,6 +56,9 @@ function App() {
         <Route path="/student-calendar" element={<StudentCalendar />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/verifyemail" element={<VerifyEmail />} />
+        <Route path="/signup-success" element={<SignupSuccess />} />
+        <Route path="/complete-signup" element={<CompleteSignup />} />
       </Routes>
     </Router>
   );

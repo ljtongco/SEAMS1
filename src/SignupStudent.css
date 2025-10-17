@@ -67,3 +67,27 @@
   cursor: pointer;
   color: #6c757d;
 }
+
+
+/* Stepper container */
+.signup-stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+/* Each step segment */
+.signup-stepper .step {
+  flex: 1;
+  height: 6px;
+  background-color: #dcdcdc; /* light gray for inactive */
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+/* Active/Completed step */
+.signup-stepper .step.active {
+  background-color: #2e7d32; /* deep green like in your image */
+}

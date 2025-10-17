@@ -1,0 +1,42 @@
+.verify-bg {
+  background: linear-gradient(rgba(106, 131, 106, 0.8), rgba(0, 50, 0, 0.8)),
+              url("./assets/uccbg.png") center/cover no-repeat;
+}
+
+.verify-card {
+  max-width: 420px;
+  border-radius: 15px;
+  background-color: #fff;
+}
+
+.text-orange {
+  color: #f57c00;
+}
+
+.progress-sm {
+  height: 6px;
+  border-radius: 5px;
+}
+s
+/* Stepper container */
+.stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+/* Each step line */
+.step {
+  flex: 1;
+  height: 6px;
+  background-color: #dcdcdc; /* default gray */
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+/* Completed step color */
+.step.active {
+  background-color: #2e7d32; /* green shade similar to your image */
+}

@@ -7,6 +7,7 @@ import "./SignupStudent.css"; // <-- signup css
 function  SignupStudent() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1); // step 2 = verify email
 
   useEffect(() => {
     document.title = "SEAMS - Signup";
@@ -27,6 +28,12 @@ function  SignupStudent() {
       {/* Signup card */}
       <div className="app-signup-wrapper">
         <div className="card p-4">
+          {/* Stepper */}
+          <div className="signup-stepper mb-4">
+            <div className={`step ${currentStep >= 1 ? "active" : ""}`}></div>
+            <div className={`step ${currentStep >= 2 ? "active" : ""}`}></div>
+            <div className={`step ${currentStep >= 3 ? "active" : ""}`}></div>
+          </div>
           <h3 className="text-center mb-3">Signup</h3>
 
           <form onSubmit={(e) => e.preventDefault()}>
@@ -79,9 +86,12 @@ function  SignupStudent() {
             </div>
 
             {/* Signup button */}
-            <button className="btn btn-primary w-100 mt-3">
-              Signup
-            </button>
+
+            <Link to="/VerifyEmail" className="btn btn-primary w-100 mt-3">
+            Signup
+          </Link>
+
+           
 
             {/* OR separator */}
             <div className="d-flex align-items-center my-3">
