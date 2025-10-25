@@ -1,6 +1,7 @@
 import React from "react";
 import "./SeamsHeader.css";
-import ucclogo from "./assets/seamsucc.png";
+import uccbg from './assets/uccbg.png';
+import ucclogo from './assets/ucclogo.png'
 
 function SeamsHeader() {
   return (

@@ -8,15 +8,17 @@ import { LinkContainer } from "react-router-bootstrap";
 import Login from "./Login";
 import Signup from "./Signup";
 import SignupStudent from "./SignupStudent";
-import StudentDashboard from "./StudentDashboard"; // ✅ import dashboard
+import StudentDashboard from "./StudentDashboard";
 import StudentCalendar from "./StudentCalendar";
-import About from "./AboutUs"; // ✅ import AboutUs
-import Contact from "./ContactUs"; // ✅ import ContactUs
+import About from "./AboutUs";
+import Contact from "./ContactUs";
 import Footer from "./Footer";
 import VerifyEmail from "./VerifyEmail";
 import SignupSuccess from "./SignupSuccess";
 import CompleteSignup from "./CompleteSignup";
 import StudentProfile from "./StudentProfile";
+import AdminDashboard from "./AdminDashboard";
+import AdminCalendar from "./AdminCalendar"; // ✅ Add this import
 
 // Home component
 function Home() {
@@ -37,9 +39,16 @@ function Home() {
         </Button>
       </LinkContainer>
 
-      {/* ✅ New button to navigate to dashboard */}
       <LinkContainer to="/student-dashboard">
-        <Button variant="info">Go to Student Dashboard</Button>
+        <Button variant="info" className="me-2">
+          Go to Student Dashboard
+        </Button>
+      </LinkContainer>
+
+      <LinkContainer to="/admin-dashboard">
+        <Button variant="warning">
+          Go to Admin Dashboard
+        </Button>
       </LinkContainer>
     </Container>
   );
@@ -48,7 +57,6 @@ function Home() {
 function App() {
   return (
     <Router>
-      {/* ...existing layout / header ... */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -62,8 +70,8 @@ function App() {
         <Route path="/CompleteSignup" element={<CompleteSignup />} />
         <Route path="/SignupSuccess" element={<SignupSuccess />} />
         <Route path="/profile" element={<StudentProfile />} />
-        {/* fallback/home route */}
-        {/* <Route path="*" element={<Home />} /> */}
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/admin-calendar" element={<AdminCalendar />} /> {/* ✅ Add this route */}
       </Routes>
       <Footer />
     </Router>
