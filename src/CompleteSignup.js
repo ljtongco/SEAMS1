@@ -6,6 +6,7 @@ import "./CompleteSignup.css"; // ✅ Corrected import
 import SeamsHeader from "./SeamsHeader"; // ✅ Header import
 import bgImage from "./assets/uccbg.png";
 
+
 function CompleteSignup() {
   const navigate = useNavigate(); // ✅ initialize navigation
   const [formData, setFormData] = useState({

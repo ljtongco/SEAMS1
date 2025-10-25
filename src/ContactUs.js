@@ -58,7 +58,7 @@ function Contact() {
         </Row>
       </Container>
 
-      <Footer />
+    
     </div>
   );
 }

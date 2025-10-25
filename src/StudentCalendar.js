@@ -281,8 +281,7 @@ function StudentCalendar() {
         </div>
       )}
 
-      {/* Footer */}
-      <Footer />
+     
     </div>
   );
 }

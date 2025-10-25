@@ -16,6 +16,7 @@ import Footer from "./Footer";
 import VerifyEmail from "./VerifyEmail";
 import SignupSuccess from "./SignupSuccess";
 import CompleteSignup from "./CompleteSignup";
+import StudentProfile from "./StudentProfile";
 
 // Home component
 function Home() {
@@ -47,6 +48,7 @@ function Home() {
 function App() {
   return (
     <Router>
+      {/* ...existing layout / header ... */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -57,12 +59,15 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/verifyemail" element={<VerifyEmail />} />
-        <Route path="/signup-success" element={<SignupSuccess />} />
-        <Route path="/complete-signup" element={<CompleteSignup />} />
+        <Route path="/CompleteSignup" element={<CompleteSignup />} />
+        <Route path="/SignupSuccess" element={<SignupSuccess />} />
+        <Route path="/profile" element={<StudentProfile />} />
+        {/* fallback/home route */}
+        {/* <Route path="*" element={<Home />} /> */}
       </Routes>
+      <Footer />
     </Router>
   );
-  
-  <Footer />;
 }
+
 export default App;
