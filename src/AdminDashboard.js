@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import AdminNavBar from './AdminNavBar';
 import AdminHeader from './AdminHeader';
 import './AdminDashboard.css';
+import AdminCalendar from './AdminCalendar';
 
 function AdminDashboard() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
@@ -147,7 +148,7 @@ function AdminDashboard() {
             </svg>
             <span className="action-text">Event Analytics</span>
           </div>
-        </div>
+        </div>.
 
         {/* Two Column Layout */}
         <div className="two-column-layout">
