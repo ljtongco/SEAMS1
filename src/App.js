@@ -18,7 +18,8 @@ import SignupSuccess from "./SignupSuccess";
 import CompleteSignup from "./CompleteSignup";
 import StudentProfile from "./StudentProfile";
 import AdminDashboard from "./AdminDashboard";
-import AdminCalendar from "./AdminCalendar"; // ✅ Add this import
+import AdminCalendar from "./AdminCalendar"; // 
+import AdminCreateEvent from "./AdminCreateEvent";  // ✅ Add this import
 
 // Home component
 function Home() {
@@ -71,7 +72,8 @@ function App() {
         <Route path="/SignupSuccess" element={<SignupSuccess />} />
         <Route path="/profile" element={<StudentProfile />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/admin-calendar" element={<AdminCalendar />} /> {/* ✅ Add this route */}
+        <Route path="/admin-calendar" element={<AdminCalendar />} />
+        <Route path="/admin-create-event" element={<AdminCreateEvent />} /> {/* ✅ Add this route */}
       </Routes>
       <Footer />
     </Router>

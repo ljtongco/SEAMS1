@@ -314,9 +314,9 @@ function AdminNavBar({ onCollapse, activePage = 'dashboard' }) {
               >
                 Pending Approval
               </button>
-              <button 
+              <button  
                 style={styles.submenuItem}
-                onClick={() => navigate('/admin-event-calendar')}
+                onClick={() => navigate('/admin-calendar')}
                 onMouseEnter={(e) => handleSubmenuHover(e, true)}
                 onMouseLeave={(e) => handleSubmenuHover(e, false)}
               >
