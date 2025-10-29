@@ -48,13 +48,13 @@
   margin: 0 0 24px 0;
 }
 
-/* FIXED Progress Steps */
+/* FIXED Progress Steps - EXACTLY LIKE DESIGN */
 .progress-steps {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .step {
@@ -64,17 +64,17 @@
 }
 
 .step-number {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  border: 3px solid white;
+  background: rgba(255, 255, 255, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 18px;
-  color: white;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.75);
   position: relative;
   z-index: 2;
   transition: all 0.3s ease;
@@ -83,24 +83,32 @@
 .step.active .step-number {
   background: white;
   color: #4caf50;
-  transform: scale(1.15);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .step.completed .step-number {
   background: white;
   color: #4caf50;
+  border-color: white;
 }
 
-.step-connector {
-  width: 100px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.3);
+.step-line {
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.35);
+  position: relative;
+  z-index: 1;
   transition: all 0.3s ease;
 }
 
-.step.completed + .step-connector {
+.step.completed .step-line {
   background: white;
+}
+
+.step:last-child .step-line {
+  display: none;
 }
 
 /* Form Body */
@@ -196,106 +204,131 @@
   box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.15);
 }
 
+/* Time Input - Native Browser Clock Picker */
+.form-input[type="time"],
+.time-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  padding-right: 16px;
+}
+
+.form-input[type="time"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+.form-input[type="time"]::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+.form-input[type="time"]::-webkit-datetime-edit {
+  color: #333;
+}
+
+.form-input[type="time"]::-webkit-datetime-edit-hour-field,
+.form-input[type="time"]::-webkit-datetime-edit-minute-field,
+.form-input[type="time"]::-webkit-datetime-edit-ampm-field {
+  color: #333;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.form-input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+.form-input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+.form-input[type="time"]::-webkit-datetime-edit-ampm-field:focus {
+  background-color: #e67e22;
+  color: white;
+  outline: none;
+}
+
 .form-textarea {
   resize: vertical;
   min-height: 120px;
 }
 
-/* Checkbox */
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 15px;
-  color: #333;
-  font-weight: 500;
-}
-
-.checkbox-label input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.checkbox-custom {
-  width: 22px;
-  height: 22px;
-  border: 2px solid #e0e0e0;
-  border-radius: 4px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom {
-  background: #e67e22;
-  border-color: #e67e22;
-}
-
-.checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom::after {
-  content: '✓';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* Radio Groups - ORANGE COLOR */
+/* Radio Groups - FIXED ORANGE COLOR */
 .radio-group {
   display: flex;
-  gap: 24px;
+  gap: 32px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .radio-group-vertical {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .radio-label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   cursor: pointer;
   font-size: 15px;
   color: #333;
   position: relative;
+  user-select: none;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .radio-label input[type="radio"] {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
+  width: 0;
+  height: 0;
+  pointer-events: none;
 }
 
 .radio-custom {
-  width: 22px;
-  height: 22px;
-  border: 2px solid #e0e0e0;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  border: 2.5px solid #d0d0d0;
   border-radius: 50%;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   flex-shrink: 0;
+  background: white;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -2px;
 }
 
-.radio-label input[type="radio"]:checked ~ .radio-custom {
+.radio-label:hover .radio-custom {
   border-color: #e67e22;
 }
 
-.radio-label input[type="radio"]:checked ~ .radio-custom::after {
+.radio-label input[type="radio"]:checked + .radio-custom {
+  border-color: #e67e22;
+  background: white;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #e67e22;
+  display: block;
 }
 
 /* Participant Buttons */
@@ -479,14 +512,14 @@
     gap: 0;
   }
 
-  .step-connector {
-    width: 60px;
+  .step-line {
+    width: 80px;
   }
 
   .step-number {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
   }
 
   .form-body {
@@ -505,7 +538,7 @@
 
   .radio-group {
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
 
   .participant-buttons {
@@ -562,14 +595,14 @@
     font-size: 13px;
   }
 
-  .step-connector {
-    width: 40px;
+  .step-line {
+    width: 50px;
   }
 
   .step-number {
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
     border-width: 2px;
   }
 

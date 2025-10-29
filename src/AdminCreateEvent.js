@@ -8,14 +8,12 @@ import './AdminCreateEvent.css';
 function AdminCreateEvent() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const [participantOption, setParticipantOption] = useState('');
-  const [showCustomParticipants, setShowCustomParticipants] = useState(false);
   const navigate = useNavigate();
 
   // Form state
   const [formData, setFormData] = useState({
     title: '',
-    isMultiDay: false,
+    dateType: 'single-day',
     eventDate: '',
     eventStartDate: '',
     eventEndDate: '',
@@ -23,11 +21,11 @@ function AdminCreateEvent() {
     timeTo: '',
     venue: '',
     venueType: 'on-campus',
-    isOnline: false,
     onlinePlatform: '',
     meetingLink: '',
     natureOfActivity: '',
-    numberOfParticipants: '',
+    participantRange: '',
+    customParticipants: '',
     sponsoringOrganization: '',
     objectives: '',
     sourceOfFunds: ''
@@ -45,10 +43,10 @@ function AdminCreateEvent() {
     }));
   };
 
-  const handleMultiDayToggle = () => {
+  const handleDateTypeChange = (type) => {
     setFormData(prev => ({
       ...prev,
-      isMultiDay: !prev.isMultiDay,
+      dateType: type,
       eventDate: '',
       eventStartDate: '',
       eventEndDate: ''
@@ -59,26 +57,15 @@ function AdminCreateEvent() {
     setFormData(prev => ({
       ...prev,
       venueType: type,
-      isOnline: type === 'online',
-      venue: type === 'online' ? prev.venue : ''
+      venue: type === 'online' ? '' : prev.venue
     }));
   };
 
-  const handleParticipantSelect = (range) => {
-    setParticipantOption(range);
-    setShowCustomParticipants(false);
+  const handleParticipantRange = (range) => {
     setFormData(prev => ({
       ...prev,
-      numberOfParticipants: range
-    }));
-  };
-
-  const handleCustomParticipants = () => {
-    setShowCustomParticipants(true);
-    setParticipantOption('custom');
-    setFormData(prev => ({
-      ...prev,
-      numberOfParticipants: ''
+      participantRange: range,
+      customParticipants: ''
     }));
   };
 
@@ -100,6 +87,13 @@ function AdminCreateEvent() {
     navigate('/admin-calendar');
   };
 
+  const getParticipantCount = () => {
+    if (formData.participantRange === 'custom') {
+      return formData.customParticipants;
+    }
+    return formData.participantRange;
+  };
+
   return (
     <div className="admin-create-event-page">
       <AdminNavBar onCollapse={handleNavCollapse} activePage="events" />
@@ -116,21 +110,15 @@ function AdminCreateEvent() {
             {/* Progress Steps */}
             <div className="progress-steps">
               <div className={`step ${currentStep >= 1 ? 'active' : ''} ${currentStep > 1 ? 'completed' : ''}`}>
-                <div className="step-circle">
-                  <span>1</span>
-                </div>
-                <div className="step-line"></div>
+                <div className="step-number">1</div>
               </div>
+              <div className="step-line"></div>
               <div className={`step ${currentStep >= 2 ? 'active' : ''} ${currentStep > 2 ? 'completed' : ''}`}>
-                <div className="step-circle">
-                  <span>2</span>
-                </div>
-                <div className="step-line"></div>
+                <div className="step-number">2</div>
               </div>
+              <div className="step-line"></div>
               <div className={`step ${currentStep >= 3 ? 'active' : ''}`}>
-                <div className="step-circle">
-                  <span>3</span>
-                </div>
+                <div className="step-number">3</div>
               </div>
             </div>
           </div>
@@ -157,22 +145,35 @@ function AdminCreateEvent() {
                   />
                 </div>
 
-                {/* Multi-Day Toggle */}
                 <div className="form-group">
-                  <label className="toggle-label">
-                    <input
-                      type="checkbox"
-                      checked={formData.isMultiDay}
-                      onChange={handleMultiDayToggle}
-                      className="toggle-checkbox"
-                    />
-                    <span className="toggle-switch"></span>
-                    <span className="toggle-text">Multiple Day Event</span>
-                  </label>
+                  <label>Event Duration <span className="required">*</span></label>
+                  <div className="radio-group">
+                    <label className="radio-label">
+                      <input
+                        type="radio"
+                        name="dateType"
+                        value="single-day"
+                        checked={formData.dateType === 'single-day'}
+                        onChange={() => handleDateTypeChange('single-day')}
+                      />
+                      <span className="radio-custom"></span>
+                      Single Day Event
+                    </label>
+                    <label className="radio-label">
+                      <input
+                        type="radio"
+                        name="dateType"
+                        value="multiple-day"
+                        checked={formData.dateType === 'multiple-day'}
+                        onChange={() => handleDateTypeChange('multiple-day')}
+                      />
+                      <span className="radio-custom"></span>
+                      Multiple Day Event
+                    </label>
+                  </div>
                 </div>
 
-                {/* Event Date */}
-                {!formData.isMultiDay ? (
+                {formData.dateType === 'single-day' ? (
                   <div className="form-group">
                     <label>Event Date <span className="required">*</span></label>
                     <input
@@ -211,7 +212,6 @@ function AdminCreateEvent() {
                   </div>
                 )}
 
-                {/* Time Range */}
                 <div className="form-row">
                   <div className="form-group">
                     <label>Time From <span className="required">*</span></label>
@@ -220,7 +220,7 @@ function AdminCreateEvent() {
                       name="timeFrom"
                       value={formData.timeFrom}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="form-input time-input"
                       required
                     />
                   </div>
@@ -231,7 +231,7 @@ function AdminCreateEvent() {
                       name="timeTo"
                       value={formData.timeTo}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="form-input time-input"
                       required
                     />
                   </div>
@@ -249,7 +249,7 @@ function AdminCreateEvent() {
                         onChange={() => handleVenueTypeChange('on-campus')}
                       />
                       <span className="radio-custom"></span>
-                      <span>On-Campus</span>
+                      On-Campus
                     </label>
                     <label className="radio-label">
                       <input
@@ -260,7 +260,7 @@ function AdminCreateEvent() {
                         onChange={() => handleVenueTypeChange('off-campus')}
                       />
                       <span className="radio-custom"></span>
-                      <span>Off-Campus</span>
+                      Off-Campus
                     </label>
                     <label className="radio-label">
                       <input
@@ -271,7 +271,7 @@ function AdminCreateEvent() {
                         onChange={() => handleVenueTypeChange('online')}
                       />
                       <span className="radio-custom"></span>
-                      <span>Online</span>
+                      Online
                     </label>
                   </div>
                 </div>
@@ -285,13 +285,13 @@ function AdminCreateEvent() {
                     onChange={handleInputChange}
                     className="form-input"
                     placeholder="Enter venue location"
-                    disabled={formData.isOnline}
-                    required={!formData.isOnline}
+                    disabled={formData.venueType === 'online'}
+                    required={formData.venueType !== 'online'}
                   />
                 </div>
 
                 {/* Online Platform Options */}
-                {formData.isOnline && (
+                {formData.venueType === 'online' && (
                   <>
                     <div className="form-group">
                       <label>Online Platform <span className="required">*</span></label>
@@ -357,7 +357,7 @@ function AdminCreateEvent() {
                           onChange={handleInputChange}
                         />
                         <span className="radio-custom"></span>
-                        <span>{option.label}</span>
+                        {option.label}
                       </label>
                     ))}
                   </div>
@@ -368,51 +368,52 @@ function AdminCreateEvent() {
                   <div className="participant-buttons">
                     <button
                       type="button"
-                      className={`participant-btn ${participantOption === 'Less than 50' ? 'active' : ''}`}
-                      onClick={() => handleParticipantSelect('Less than 50')}
+                      className={`participant-btn ${formData.participantRange === 'less-than-50' ? 'active' : ''}`}
+                      onClick={() => handleParticipantRange('less-than-50')}
                     >
                       Less than 50
                     </button>
                     <button
                       type="button"
-                      className={`participant-btn ${participantOption === '50-100' ? 'active' : ''}`}
-                      onClick={() => handleParticipantSelect('50-100')}
+                      className={`participant-btn ${formData.participantRange === '50-100' ? 'active' : ''}`}
+                      onClick={() => handleParticipantRange('50-100')}
                     >
                       50-100
                     </button>
                     <button
                       type="button"
-                      className={`participant-btn ${participantOption === '100-200' ? 'active' : ''}`}
-                      onClick={() => handleParticipantSelect('100-200')}
+                      className={`participant-btn ${formData.participantRange === '100-200' ? 'active' : ''}`}
+                      onClick={() => handleParticipantRange('100-200')}
                     >
                       100-200
                     </button>
                     <button
                       type="button"
-                      className={`participant-btn ${participantOption === '200+' ? 'active' : ''}`}
-                      onClick={() => handleParticipantSelect('200+')}
+                      className={`participant-btn ${formData.participantRange === '200-500' ? 'active' : ''}`}
+                      onClick={() => handleParticipantRange('200-500')}
                     >
-                      200+
+                      200-500
                     </button>
                     <button
                       type="button"
-                      className={`participant-btn ${participantOption === 'custom' ? 'active' : ''}`}
-                      onClick={handleCustomParticipants}
+                      className={`participant-btn ${formData.participantRange === 'custom' ? 'active' : ''}`}
+                      onClick={() => handleParticipantRange('custom')}
                     >
-                      <i className="bi bi-pencil"></i> Enter Number
+                      Enter Number
                     </button>
                   </div>
-                  {showCustomParticipants && (
+
+                  {formData.participantRange === 'custom' && (
                     <input
                       type="number"
-                      name="numberOfParticipants"
-                      value={formData.numberOfParticipants}
+                      name="customParticipants"
+                      value={formData.customParticipants}
                       onChange={handleInputChange}
                       className="form-input"
                       placeholder="Enter exact number"
                       min="1"
-                      required
                       style={{ marginTop: '12px' }}
+                      required
                     />
                   )}
                 </div>
@@ -473,7 +474,7 @@ function AdminCreateEvent() {
                   <div className="summary-row">
                     <span className="summary-label">Date:</span>
                     <span className="summary-value">
-                      {formData.isMultiDay 
+                      {formData.dateType === 'multiple-day'
                         ? `${formData.eventStartDate || '-'} to ${formData.eventEndDate || '-'}`
                         : formData.eventDate || '-'}
                     </span>
@@ -481,7 +482,7 @@ function AdminCreateEvent() {
                   <div className="summary-row">
                     <span className="summary-label">Time:</span>
                     <span className="summary-value">
-                      {formData.timeFrom && formData.timeTo 
+                      {formData.timeFrom && formData.timeTo
                         ? `${formData.timeFrom} - ${formData.timeTo}`
                         : '-'}
                     </span>
@@ -489,15 +490,21 @@ function AdminCreateEvent() {
                   <div className="summary-row">
                     <span className="summary-label">Venue:</span>
                     <span className="summary-value">
-                      {formData.isOnline ? 'Online' : (formData.venue || '-')}
+                      {formData.venueType === 'online' ? 'Online' : (formData.venue || '-')}
                       {' '}({formData.venueType === 'on-campus' ? 'On-Campus' : formData.venueType === 'off-campus' ? 'Off-Campus' : 'Online'})
                     </span>
                   </div>
-                  {formData.isOnline && (
-                    <div className="summary-row">
-                      <span className="summary-label">Platform:</span>
-                      <span className="summary-value">{formData.onlinePlatform || '-'}</span>
-                    </div>
+                  {formData.venueType === 'online' && (
+                    <>
+                      <div className="summary-row">
+                        <span className="summary-label">Platform:</span>
+                        <span className="summary-value">{formData.onlinePlatform || '-'}</span>
+                      </div>
+                      <div className="summary-row">
+                        <span className="summary-label">Link:</span>
+                        <span className="summary-value">{formData.meetingLink || '-'}</span>
+                      </div>
+                    </>
                   )}
                   <div className="summary-row">
                     <span className="summary-label">Type:</span>
@@ -505,7 +512,7 @@ function AdminCreateEvent() {
                   </div>
                   <div className="summary-row">
                     <span className="summary-label">Participants:</span>
-                    <span className="summary-value">{formData.numberOfParticipants || '-'}</span>
+                    <span className="summary-value">{getParticipantCount() || '-'}</span>
                   </div>
                 </div>
               </div>
