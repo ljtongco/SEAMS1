@@ -1,23 +1,29 @@
-.verify-bg {
-  background: linear-gradient(rgba(106, 131, 106, 0.8), rgba(0, 50, 0, 0.8)),
-              url("./assets/uccbg.png") center/cover no-repeat;
+/* Removes broken image background */
+.verify-bg,
+.verify-email-container {
+  background: none;
 }
 
+/* Card styling */
 .verify-card {
   max-width: 420px;
   border-radius: 15px;
   background-color: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Accent color for highlight text */
 .text-orange {
   color: #f57c00;
 }
 
+/* Small progress indicator (if reused) */
 .progress-sm {
   height: 6px;
   border-radius: 5px;
 }
-s
+
 /* Stepper container */
 .stepper {
   display: flex;
@@ -27,7 +33,7 @@ s
   margin-bottom: 1.5rem;
 }
 
-/* Each step line */
+/* Each step indicator */
 .step {
   flex: 1;
   height: 6px;
@@ -38,5 +44,5 @@ s
 
 /* Completed step color */
 .step.active {
-  background-color: #2e7d32; /* green shade similar to your image */
+  background-color: #2e7d32; /* green shade */
 }

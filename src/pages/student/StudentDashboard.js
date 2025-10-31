@@ -1,8 +1,8 @@
-// src/StudentDashboard.js
+// src/pages/student/StudentDashboard.js
 import React, { useEffect, useState } from "react";
-import UserNavbar from "./UserNavbar";
-import Footer from "./Footer";
-import "./StudentDashboard.css";
+import UserNavbar from "../../components/UserNavbar";
+import Footer from "../../components/Footer";
+import "../../styles/StudentDashboard.css";
 
 function StudentDashboard() {
   useEffect(() => {
@@ -176,7 +176,8 @@ function StudentDashboard() {
         </div>
       </div>
 
-
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

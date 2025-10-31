@@ -1,9 +1,9 @@
-// src/StudentProfile.js
+// src/pages/student/StudentProfile.js
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import UserNavbar from "./UserNavbar";
-import profileImg from "./assets/jsj.jpg";
-import "./StudentProfile.css";
+import UserNavbar from "../../components/UserNavbar";
+import profileImg from "../../assets/jsj.jpg";
+import "../../styles/Profile.css";
 import moment from "moment";
 import {
   Container,

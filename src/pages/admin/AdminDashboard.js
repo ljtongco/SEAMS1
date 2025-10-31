@@ -1,18 +1,20 @@
-// src/AdminDashboard.js
+// src/pages/admin/AdminDashboard.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AdminNavBar from './AdminNavBar';
-import AdminHeader from './AdminHeader';
-import './AdminDashboard.css';
+
+// Components
+import AdminNavBar from '../../components/AdminNavBar';
+import AdminHeader from '../../components/AdminHeader';
 import AdminCalendar from './AdminCalendar';
+
+// CSS
+import '../../styles/AdminDashboard.css';
 
 function AdminDashboard() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const navigate = useNavigate();
 
-  const handleNavCollapse = (collapsed) => {
-    setIsNavCollapsed(collapsed);
-  };
+  const handleNavCollapse = (collapsed) => setIsNavCollapsed(collapsed);
 
   // Mock data
   const upcomingEvents = [
@@ -52,7 +54,7 @@ function AdminDashboard() {
     <div className="admin-container">
       <AdminNavBar onCollapse={handleNavCollapse} activePage="dashboard" />
       <AdminHeader isNavCollapsed={isNavCollapsed} />
-      
+
       <main className={`admin-main-content ${isNavCollapsed ? 'navbar-collapsed' : ''}`}>
         {/* Ongoing Event Banner */}
         <div className="ongoing-banner">
@@ -148,7 +150,7 @@ function AdminDashboard() {
             </svg>
             <span className="action-text">Event Analytics</span>
           </div>
-        </div>.
+        </div>
 
         {/* Two Column Layout */}
         <div className="two-column-layout">

@@ -1,0 +1,43 @@
+/* ✅ Clean and minimal CompleteSignup.css */
+
+/* Header fixed on top of page */
+.header-wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+/* Card container */
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Form card styling */
+.card {
+  background-color: #fff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Stepper (progress indicator) */
+.stepper {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.step {
+  flex: 1;
+  height: 6px;
+  background-color: #dcdcdc;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.step.active {
+  background-color: #2e7d32; /* UCC green shade */
+}

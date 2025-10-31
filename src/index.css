@@ -1,13 +1,159 @@
+/* === GLOBAL STYLES === */
+
+:root {
+  /* Base Colors */
+  --primary-color: #388E3C;
+  --primary-color-light: #4EBB53;
+  --accent-color: #E67E22;
+  --accent-color-light: #FFB347;
+  --secondary-color: #AAAAAA;
+  --text-color: #000000;
+  --background-color: #F5F5F5;
+
+  /* Gradients */
+  --gradient-green: linear-gradient(135deg, #388E3C, #4EBB53);
+  --gradient-orange: linear-gradient(135deg, #E67E22, #FFB347);
+}
+
+/* Base setup */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* === Buttons === */
+.btn-primary {
+  background: var(--gradient-green);
+  border: none;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2E7D32, #4EBB53);
+}
+
+.btn-accent {
+  background: var(--gradient-orange);
+  border: none;
+  color: #fff;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #cf6d18, #FFB347);
+}
+
+/* === Utility Gradient Backgrounds === */
+.bg-gradient-green {
+  background: var(--gradient-green);
+  color: #fff;
+}
+
+.bg-gradient-orange {
+  background: var(--gradient-orange);
+  color: #fff;
+}
+
+/* Optional overlay text readability */
+.bg-gradient-green h1,
+.bg-gradient-orange h1,
+.bg-gradient-green h2,
+.bg-gradient-orange h2 {
+  color: #fff;
+}
+
+/* === Other Globals === */
+.container {
+  color: var(--text-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-color);
+}
+
+/* Code font */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* === GREEN BUTTON (Primary Color: #388E3C) === */
+.btn-green {
+ background-color: #388E3C;
+  color: white;
+  border: none;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-green:hover {
+  background-color: #2E7D32; /* darker shade */
+  transform: translateY(-1px);
+}
+
+.btn-green:active {
+  background-color: #1B5E20; /* even darker for press */
+  transform: translateY(0);
+}
+
+/* === GREENGRADIENT BUTTON (Primary Color: #388E3C) === */
+.btn-green-gradient {
+  background: linear-gradient(135deg, #388E3C, #4EBB53); /* your green gradient */
+  color: #fff;
+  border: none;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(56, 142, 60, 0.3);
+}
+
+.btn-green-gradient:hover {
+  background: linear-gradient(135deg, #2E7D32, #43A047); /* slightly darker hover */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(56, 142, 60, 0.4);
+}
+
+.btn-green-gradient:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(56, 142, 60, 0.3);
+}
+

@@ -54,14 +54,6 @@
   color: #e67e22;
 }
 
-/* Buttons */
-.login-btn {
-  height: 45px;
-  font-size: 1rem;
-  border-radius: 8px;
-  margin-top: 10px;
-}
-
 .login-google-btn {
   background-color: #fff;
   border: 1px solid #ddd;

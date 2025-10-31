@@ -2,55 +2,61 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import Login from "./Login";
-import Signup from "./Signup";
-import SignupStudent from "./SignupStudent";
-import StudentDashboard from "./StudentDashboard";
-import StudentCalendar from "./StudentCalendar";
-import About from "./AboutUs";
-import Contact from "./ContactUs";
-import Footer from "./Footer";
-import VerifyEmail from "./VerifyEmail";
-import SignupSuccess from "./SignupSuccess";
-import CompleteSignup from "./CompleteSignup";
-import StudentProfile from "./StudentProfile";
-import AdminDashboard from "./AdminDashboard";
-import AdminCalendar from "./AdminCalendar"; // 
-import AdminCreateEvent from "./AdminCreateEvent";  // ✅ Add this import
 
-// Home component
+// Auth pages
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
+import SignupStudent from "./pages/auth/SignupStudent";
+import CompleteSignup from "./pages/auth/CompleteSignup";
+import VerifyEmail from "./pages/auth/VerifyEmail";
+import SignupSuccess from "./pages/auth/SignupSuccess";
+
+// Public pages
+import About from "./pages/public/About";
+import Contact from "./pages/public/Contact"; // ✅ added contact page
+
+// Admin pages
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminCalendar from "./pages/admin/AdminCalendar";
+import AdminCreateEvent from "./pages/admin/AdminCreateEvent";
+
+// Student pages
+import StudentDashboard from "./pages/student/StudentDashboard";
+import StudentCalendar from "./pages/student/StudentCalendar";
+import Profile from "./pages/common/Profile";
+
+// Components
+import Footer from "./components/Footer";
+
 function Home() {
   return (
     <Container className="text-center mt-5">
       <h1>Welcome to SEAMS</h1>
-      <p>This is the landing page</p>
+      <p>This is a temporary landing page</p>
 
-      <LinkContainer to="/login">
-        <Button variant="primary" className="me-2">
-          Go to Login
-        </Button>
-      </LinkContainer>
+      <div className="d-flex flex-wrap justify-content-center gap-2 mt-4">
+        <LinkContainer to="/login">
+          <Button variant="primary">Login</Button>
+        </LinkContainer>
 
-      <LinkContainer to="/signup">
-        <Button variant="success" className="me-2">
-          Go to Signup
-        </Button>
-      </LinkContainer>
+        <LinkContainer to="/signup">
+          <Button variant="success">Sign Up</Button>
+        </LinkContainer>
 
-      <LinkContainer to="/student-dashboard">
-        <Button variant="info" className="me-2">
-          Go to Student Dashboard
-        </Button>
-      </LinkContainer>
+        {/* Admin access button */}
+        <LinkContainer to="/admin-dashboard">
+          <Button variant="warning">Admin</Button>
+        </LinkContainer>
 
-      <LinkContainer to="/admin-dashboard">
-        <Button variant="warning">
-          Go to Admin Dashboard
-        </Button>
-      </LinkContainer>
+        {/* Student access button */}
+        <LinkContainer to="/student-dashboard">
+          <Button variant="info">Student</Button>
+        </LinkContainer>
+      </div>
     </Container>
   );
 }
@@ -59,22 +65,30 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Public */}
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} /> {/* ✅ Added route */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/profile" element={<Profile />} />
+
+        {/* Auth flow */}
         <Route path="/signup-student" element={<SignupStudent />} />
-        <Route path="/student-dashboard" element={<StudentDashboard />} />
-        <Route path="/student-calendar" element={<StudentCalendar />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/complete-signup" element={<CompleteSignup />} />
         <Route path="/verifyemail" element={<VerifyEmail />} />
-        <Route path="/CompleteSignup" element={<CompleteSignup />} />
-        <Route path="/SignupSuccess" element={<SignupSuccess />} />
-        <Route path="/profile" element={<StudentProfile />} />
+        <Route path="/signupsuccess" element={<SignupSuccess />} />
+
+        {/* Admin */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-calendar" element={<AdminCalendar />} />
-        <Route path="/admin-create-event" element={<AdminCreateEvent />} /> {/* ✅ Add this route */}
+        <Route path="/admin-create-event" element={<AdminCreateEvent />} />
+
+        {/* Student */}
+        <Route path="/student-dashboard" element={<StudentDashboard />} />
+        <Route path="/student-calendar" element={<StudentCalendar />} />
       </Routes>
+
       <Footer />
     </Router>
   );

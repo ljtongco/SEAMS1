@@ -1,7 +1,9 @@
 // src/AdminHeader.js
 import React, { useState } from 'react';
 
-import seamsuccLogo from './assets/seamsucc.png';
+import seamsuccLogo from "../assets/seamsucc.png";
+
+
 function AdminHeader({ isNavCollapsed }) {
   const [searchValue, setSearchValue] = useState('');
 

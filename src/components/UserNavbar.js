@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import ucclogo from "./assets/seamsucc.png";
+import ucclogo from "../assets/seamsucc.png"; // ✅ fixed relative path
 
 function UserNavbar() {
   const location = useLocation();
@@ -22,7 +22,6 @@ function UserNavbar() {
         zIndex: "1000",
       }}
     >
-      {/* Styling Block */}
       <style>
         {`
           .nav-links {
@@ -49,7 +48,6 @@ function UserNavbar() {
             font-weight: bold;
           }
 
-          /* Animated underline */
           .nav-links a::after {
             content: '';
             position: absolute;
@@ -66,7 +64,6 @@ function UserNavbar() {
             width: 100%;
           }
 
-          /* Desktop - Center the links */
           @media (min-width: 769px) {
             .nav-container {
               display: flex;
@@ -88,7 +85,6 @@ function UserNavbar() {
             }
           }
 
-          /* Mobile Styles */
           @media (max-width: 768px) {
             .nav-container {
               display: flex;
@@ -119,7 +115,6 @@ function UserNavbar() {
       </style>
 
       <div className="nav-container">
-        {/* Logo + Title */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
             src={ucclogo}
@@ -131,7 +126,6 @@ function UserNavbar() {
           </span>
         </div>
 
-        {/* Hamburger Menu Button */}
         <button
           className="menu-btn"
           onClick={toggleMenu}
@@ -146,7 +140,6 @@ function UserNavbar() {
           ☰
         </button>
 
-        {/* Navigation Links */}
         <div className="nav-links">
           <Link
             to="/student-dashboard"

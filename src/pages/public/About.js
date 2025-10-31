@@ -1,7 +1,7 @@
-
-import React, {useEffect} from "react";
+// src/pages/public/About.js
+import React, { useEffect } from "react";
 import { Container, Button, Image } from "react-bootstrap";
-import UserNavbar from "./UserNavbar";
+import UserNavbar from "../../components/UserNavbar";
 
 function About() {
   useEffect(() => {
@@ -27,12 +27,12 @@ function About() {
 
       <Container className="text-center">
         <Image
-          src="/images/bsis.jpg" 
+          src="/images/bsis.jpg"
           style={{ width: 450, height: "auto" }}
           fluid
           rounded
           className="shadow mb-4"
-          alt="Students attending a school event" // more descriptive alt
+          alt="Students attending a school event"
         />
       </Container>
 
@@ -43,7 +43,7 @@ function About() {
           extracurricular activities. With SEAMS, event coordination becomes faster, easier, 
           and more organized.
         </p>
-         <Button as="a" href="/contact" variant="success" size="lg" className="mt-3">
+        <Button as="a" href="/contact" variant="success" size="lg" className="mt-3">
           Contact Us
         </Button>
       </Container>

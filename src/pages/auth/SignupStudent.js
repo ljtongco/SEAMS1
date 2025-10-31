@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SeamsHeader from "./SeamsHeader";
-import bgImage from "./assets/uccbg.png";
-import "./SignupStudent.css"; // <-- signup css
+import SeamsHeader from "../../components/SeamsHeader";
+import AuthBg from "../../components/AuthBg"; // ✅ imported AuthBg
+import "../../styles/SignupStudent.css"; // signup css
 
-function  SignupStudent() {
+function SignupStudent() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [currentStep, setCurrentStep] = useState(1); // step 2 = verify email
@@ -14,12 +14,7 @@ function  SignupStudent() {
   }, []);
 
   return (
-    <div
-      className="auth-bg"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      <div className="overlay" />
-
+    <AuthBg>
       {/* Header */}
       <div className="header-wrapper">
         <SeamsHeader />
@@ -42,11 +37,7 @@ function  SignupStudent() {
               <label htmlFor="signupEmail" className="form-label">
                 Email address
               </label>
-              <input
-                type="email"
-                className="form-control"
-                id="signupEmail"
-              />
+              <input type="email" className="form-control" id="signupEmail" />
             </div>
 
             {/* Password */}
@@ -60,7 +51,9 @@ function  SignupStudent() {
                 id="signupPassword"
               />
               <i
-                className={`bi ${showPassword ? "bi-eye" : "bi-eye-slash"} password-toggle`}
+                className={`bi ${
+                  showPassword ? "bi-eye" : "bi-eye-slash"
+                } password-toggle`}
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
                 role="button"
@@ -78,20 +71,21 @@ function  SignupStudent() {
                 id="confirmPassword"
               />
               <i
-                className={`bi ${showConfirmPassword ? "bi-eye" : "bi-eye-slash"} password-toggle`}
+                className={`bi ${
+                  showConfirmPassword ? "bi-eye" : "bi-eye-slash"
+                } password-toggle`}
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                aria-label={
+                  showConfirmPassword ? "Hide password" : "Show password"
+                }
                 role="button"
               />
             </div>
 
             {/* Signup button */}
-
-            <Link to="/VerifyEmail" className="btn btn-primary w-100 mt-3">
-            Signup
-          </Link>
-
-           
+            <Link to="/verifyemail" className="btn btn-primary w-100 mt-3">
+              Signup
+            </Link>
 
             {/* OR separator */}
             <div className="d-flex align-items-center my-3">
@@ -119,7 +113,7 @@ function  SignupStudent() {
           </form>
         </div>
       </div>
-    </div>
+    </AuthBg>
   );
 }
 

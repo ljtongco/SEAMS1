@@ -1,8 +1,9 @@
+// src/pages/auth/Signup.js
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import SeamsHeader from "./SeamsHeader";
-import bgImage from "./assets/uccbg.png";
-import "./Signup.css";
+import SeamsHeader from "../../components/SeamsHeader";
+import AuthBg from "../../components/AuthBg"; // ✅ use reusable background
+import "../../styles/Signup.css";
 
 function Signup() {
   useEffect(() => {
@@ -10,9 +11,7 @@ function Signup() {
   }, []);
 
   return (
-    <div className="auth-bg" style={{ backgroundImage: `url(${bgImage})` }}>
-      <div className="overlay" />
-
+    <AuthBg>
       {/* Header */}
       <div className="header-wrapper">
         <SeamsHeader />
@@ -21,7 +20,7 @@ function Signup() {
       {/* Signup content */}
       <div className="signup-page">
         <div className="signup-card card p-4">
-          <h3 className="signup-heading text-center mb-4">Signup as</h3>
+          <h3 className="signup-heading text-center mb-4">Sign up as</h3>
 
           <Link to="/signup-student" className="btn btn-primary w-100 mb-3 py-3">
             Student
@@ -32,14 +31,14 @@ function Signup() {
           </Link>
         </div>
 
-        <p className="signup-bottom-text">
+        <p className="signup-bottom-text text-center mt-3">
           Already have an account?{" "}
           <Link to="/login" className="login-link">
             Log in
           </Link>
         </p>
       </div>
-    </div>
+    </AuthBg>
   );
 }
 
