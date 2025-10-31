@@ -1,0 +1,362 @@
+/* Admin Pending Approval Page - Strong overrides to fix stuck right-column layout */
+
+/* ---------- Container & Main ---------- */
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.admin-main-content {
+  margin-left: 250px;
+  flex: 1;
+  padding: 84px 32px 32px;
+  transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-main-content.navbar-collapsed {
+  margin-left: 72px;
+}
+
+/* ---------- Header ---------- */
+.approve-events-header {
+  background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+  color: white;
+  padding: 32px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(56, 142, 60, 0.3);
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+}
+
+/* ---------- Filter ---------- */
+.filter-section {
+  margin-bottom: 24px;
+}
+
+.category-dropdown {
+  width: 250px;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-dropdown:focus {
+  outline: none;
+  border-color: #388e3c;
+  box-shadow: 0 0 0 3px rgba(56, 142, 60, 0.08);
+}
+
+.category-dropdown:hover {
+  border-color: #388e3c;
+}
+
+/* ---------- Events Grid ---------- */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* ---------- Event Card (definitive single-column) ---------- */
+/* Force a vertical card layout even if other CSS tries to make columns */
+.event-card {
+  /* enforce flex column layout */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between;
+  width: 100% !important;
+  background: #fff;
+  border-radius: 12px;
+  border: 1.5px solid #e0e0e0;
+  overflow: hidden;
+  transition: all 0.28s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  min-height: 220px; /* give cards a base height */
+}
+
+/* Prevent rogue grid/float rules from splitting the card */
+.event-card, 
+.event-card > * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+/* Ensure direct children are full width */
+.event-card > .event-card-header,
+.event-card > .event-card-body,
+.event-card > .event-card-actions {
+  width: 100% !important;
+}
+
+/* Card hover */
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+  border-color: #388e3c;
+}
+
+/* ---------- Card Header ---------- */
+.event-card-header {
+  display: flex !important;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  background: transparent;
+}
+
+.event-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+  line-height: 1.25;
+  /* let title wrap and not push other content out */
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.event-status-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.event-status-badge.pending {
+  background-color: #fff4e5;
+  color: #e67e22;
+}
+
+/* ---------- Card Body ---------- */
+/* Force vertical stacking of all info rows */
+.event-card-body {
+  padding: 16px 20px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px;
+  flex: 1 1 auto;
+  align-items: stretch; /* ensure children stretch full width */
+}
+
+/* Each info row is a single horizontal row with icon + text */
+.event-info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #555;
+  width: 100%;
+  min-height: 20px;
+}
+
+.event-info-row i {
+  font-size: 16px;
+  color: #388e3c;
+  flex: 0 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-info-row span {
+  line-height: 1.4;
+  color: #444;
+  flex: 1 1 auto;
+  min-width: 0; /* allow truncation/wrapping inside flex */
+  word-break: break-word;
+}
+
+/* Separator line for visual grouping (optional) */
+.event-card-body .divider {
+  height: 1px;
+  background: #f0f0f0;
+  margin: 6px 0;
+  width: 100%;
+}
+
+/* ---------- Status Row ---------- */
+.event-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #f6f6f6;
+  width: 100%;
+}
+
+.status-label {
+  font-weight: 600;
+  color: #666;
+}
+
+.status-value {
+  font-weight: 700;
+}
+
+.pending-status {
+  color: #e67e22;
+}
+
+/* ---------- Card Actions (buttons) ---------- */
+.event-card-actions {
+  display: flex !important;
+  gap: 8px;
+  padding: 16px 20px;
+  background-color: #fafafa;
+  border-top: 1px solid #eee;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+/* ensure buttons are same height and fill */
+.event-card-actions button {
+  flex: 1 1 auto;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+  min-width: 0;
+}
+
+/* Specific buttons */
+.btn-view {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #e6e6e6;
+}
+
+.btn-view:hover {
+  transform: translateY(-2px);
+}
+
+.btn-approve {
+  background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+  color: white;
+  box-shadow: 0 2px 6px rgba(56, 142, 60, 0.22);
+}
+
+.btn-approve:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(56, 142, 60, 0.32);
+}
+
+.btn-reject {
+  background-color: #f44336;
+  color: white;
+  box-shadow: 0 2px 6px rgba(244, 67, 54, 0.22);
+}
+
+.btn-reject:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(244, 67, 54, 0.32);
+}
+
+/* ---------- No Events State ---------- */
+.no-events {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: #999;
+}
+
+.no-events p {
+  font-size: 18px;
+  margin-top: 16px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .admin-main-content {
+    margin-left: 72px;
+    padding: 84px 24px 24px;
+  }
+
+  .events-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-main-content {
+    margin-left: 0;
+    padding: 100px 16px 24px;
+  }
+
+  .approve-events-header {
+    padding: 24px 20px;
+  }
+
+  .page-title {
+    font-size: 26px;
+  }
+
+  .category-dropdown {
+    width: 100%;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .event-card-actions {
+    flex-direction: column;
+  }
+
+  .event-card-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-main-content {
+    padding: 90px 12px 20px;
+  }
+
+  .approve-events-header {
+    padding: 20px 16px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .event-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .event-status-badge {
+    align-self: flex-start;
+  }
+}
+
+

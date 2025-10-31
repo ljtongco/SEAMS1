@@ -23,6 +23,7 @@ import Contact from "./pages/public/Contact"; // ✅ added contact page
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminCalendar from "./pages/admin/AdminCalendar";
 import AdminCreateEvent from "./pages/admin/AdminCreateEvent";
+import AdminPendingApproval from './pages/admin/AdminPendingApproval';
 
 // Student pages
 import StudentDashboard from "./pages/student/StudentDashboard";
@@ -83,6 +84,7 @@ function App() {
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-calendar" element={<AdminCalendar />} />
         <Route path="/admin-create-event" element={<AdminCreateEvent />} />
+        <Route path="/admin-pending-approval" element={<AdminPendingApproval />} />
 
         {/* Student */}
         <Route path="/student-dashboard" element={<StudentDashboard />} />
