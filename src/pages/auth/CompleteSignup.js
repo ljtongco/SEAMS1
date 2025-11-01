@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
+import { Container, Card, Form, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../styles/CompleteSignup.css"; 
 import SeamsHeader from "../../components/SeamsHeader";
-import AuthBg from "../../components/AuthBg"; // ✅ import AuthBg
+import AuthBg from "../../components/AuthBg";
+import TermsAndConditions from "../../components/TermsAndConditions"; // ✅ separate modal
 
 function CompleteSignup() {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     firstName: "",
     middleName: "",
@@ -23,6 +22,8 @@ function CompleteSignup() {
     agree: false,
   });
 
+  const [showTerms, setShowTerms] = useState(false);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
@@ -34,10 +35,13 @@ function CompleteSignup() {
       alert("Please agree to the Terms and Conditions before continuing.");
       return;
     }
-
     console.log("Form Submitted:", formData);
     navigate("/SignupSuccess");
   };
+
+  useEffect(() => {
+    document.title = "Complete Signup - SEAMS";
+  }, []);
 
   return (
     <AuthBg>
@@ -45,7 +49,14 @@ function CompleteSignup() {
         <SeamsHeader />
       </div>
 
-      <Container style={{ maxWidth: "650px" }}>
+      {/* Ensures spacing under header */}
+      <Container
+        style={{
+          paddingTop: "140px", // ✅ enough gap below header
+          paddingBottom: "60px",
+          maxWidth: "700px",
+        }}
+      >
         <Card className="p-4 shadow-lg rounded-4">
           {/* Stepper */}
           <div className="stepper mb-3">
@@ -54,7 +65,10 @@ function CompleteSignup() {
             <div className="step active" />
           </div>
 
-          <h4 className="text-center fw-bold mb-4">Complete Your Signup</h4>
+          {/* Black heading */}
+          <h4 className="text-center fw-bold mb-4" style={{ color: "#000" }}>
+            Complete Your Signup
+          </h4>
 
           <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
@@ -167,18 +181,23 @@ function CompleteSignup() {
               </Col>
             </Row>
 
+            {/* Terms Agreement */}
             <Form.Group className="mb-3">
               <Form.Check
                 type="checkbox"
                 label={
                   <>
                     I have read and agree to the{" "}
-                    <a
-                      href="#"
-                      className="text-success text-decoration-none"
+                    <span
+                      style={{
+                        color: "var(--accent-color)",
+                        cursor: "pointer",
+                        fontWeight: 500,
+                      }}
+                      onClick={() => setShowTerms(true)}
                     >
                       Terms and Conditions
-                    </a>
+                    </span>
                   </>
                 }
                 name="agree"
@@ -187,12 +206,20 @@ function CompleteSignup() {
               />
             </Form.Group>
 
-            <Button type="submit" className="w-100 py-2" variant="success">
+            <button type="submit" className="green-btn w-100 py-2">
               Continue
-            </Button>
+            </button>
           </Form>
         </Card>
       </Container>
+
+      {/* Separate Modal Component */}
+      <TermsAndConditions
+        show={showTerms}
+        handleClose={() => setShowTerms(false)}
+        formData={formData}
+        setFormData={setFormData}
+      />
     </AuthBg>
   );
 }

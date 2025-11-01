@@ -176,8 +176,7 @@ function StudentDashboard() {
         </div>
       </div>
 
-      {/* Footer */}
-      <Footer />
+
     </div>
   );
 }

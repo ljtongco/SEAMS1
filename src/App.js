@@ -1,4 +1,3 @@
-// src/App.js
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
@@ -14,6 +13,7 @@ import SignupStudent from "./pages/auth/SignupStudent";
 import CompleteSignup from "./pages/auth/CompleteSignup";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import SignupSuccess from "./pages/auth/SignupSuccess";
+import ForgotPassword from "./pages/auth/ForgotPassword"; // ✅ added Forgot Password
 
 // Public pages
 import About from "./pages/public/About";
@@ -23,7 +23,8 @@ import Contact from "./pages/public/Contact"; // ✅ added contact page
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminCalendar from "./pages/admin/AdminCalendar";
 import AdminCreateEvent from "./pages/admin/AdminCreateEvent";
-import AdminPendingApproval from './pages/admin/AdminPendingApproval';
+import AdminPendingApproval from "./pages/admin/AdminPendingApproval";
+import AdminManageUsers from "./pages/admin/AdminManageUsers"; // ✅ added manage users page
 
 // Student pages
 import StudentDashboard from "./pages/student/StudentDashboard";
@@ -69,9 +70,12 @@ function App() {
         {/* Public */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} /> {/* ✅ Added route */}
+        <Route path="/contact" element={<Contact />} />
+
+        {/* Auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} /> {/* ✅ added route */}
         <Route path="/profile" element={<Profile />} />
 
         {/* Auth flow */}
@@ -79,12 +83,14 @@ function App() {
         <Route path="/complete-signup" element={<CompleteSignup />} />
         <Route path="/verifyemail" element={<VerifyEmail />} />
         <Route path="/signupsuccess" element={<SignupSuccess />} />
+        {/* Later: add reset password route here */}
 
         {/* Admin */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-calendar" element={<AdminCalendar />} />
         <Route path="/admin-create-event" element={<AdminCreateEvent />} />
         <Route path="/admin-pending-approval" element={<AdminPendingApproval />} />
+        <Route path="/admin-manage-users" element={<AdminManageUsers />} /> {/* ✅ new route */}
 
         {/* Student */}
         <Route path="/student-dashboard" element={<StudentDashboard />} />

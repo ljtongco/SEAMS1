@@ -1,0 +1,135 @@
+.admin-manage-users-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Match AdminCreateEvent spacing and navbar collapse */
+.admin-manage-users-container {
+  margin-left: 250px;
+  padding: 84px 40px 40px;
+  transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-manage-users-container.navbar-collapsed {
+  margin-left: 72px;
+}
+
+/* Page header (title + filter) */
+.manage-users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Table wrapper */
+.users-table-wrapper {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+/* Table styles */
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th {
+  background-color: #f1f3f5;
+  font-weight: 600;
+  text-align: center;
+  padding: 14px;
+  color: #333;
+}
+
+.users-table td {
+  text-align: center;
+  padding: 14px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.users-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Filter dropdown */
+.filter-dropdown {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 15px;
+  background: white;
+  color: #333;
+  outline: none;
+}
+
+.filter-dropdown:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+}
+
+/* Use the greenBtn global style */
+.greenBtn {
+  background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.greenBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(56, 142, 60, 0.25);
+}
+
+.greenBtn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .admin-manage-users-container {
+    margin-left: 72px;
+    padding: 84px 24px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-manage-users-container {
+    margin-left: 0;
+    padding: 100px 16px 24px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .filter-dropdown {
+    width: 100%;
+  }
+
+  .greenBtn {
+    width: 100%;
+  }
+
+  .users-table th,
+  .users-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
