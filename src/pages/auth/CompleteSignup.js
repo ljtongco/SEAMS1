@@ -4,7 +4,7 @@ import { Container, Card, Form, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SeamsHeader from "../../components/SeamsHeader";
 import AuthBg from "../../components/AuthBg";
-import TermsAndConditions from "../../components/TermsAndConditions"; // ✅ separate modal
+import TermsAndConditions from "../../components/modals/TermsAndConditions"; // ✅ separate modal
 
 function CompleteSignup() {
   const navigate = useNavigate();
